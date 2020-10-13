@@ -1,88 +1,101 @@
 import React, { Fragment, useState } from "react";
-import { Navbar, Nav, Button, Image, Form, Modal } from "react-bootstrap";
-import main from "./img/main.svg";
+import { BrowserRouter as Router, Link } from "react-router-dom";
+import { Button, Card } from "react-bootstrap";
+import NavBar from "./Components/NavBar";
+import Career from "./img/proud.svg";
+import Card1 from "./img/card1.svg";
+import Card2 from "./img/card2.svg";
 
 const App = () => {
-  const [name, setName] = useState("");
-
-  const OnChange = (e) => {
-    setName(e.target.value);
-  };
-
-  const [show, setShow] = useState(false);
-
-  const handleClose = () => setShow(false);
-  const handleShow = () => setShow(true);
-
   return (
-    <Fragment>
-      <section className="modal">
-        <Modal
-          show={show}
-          onHide={handleClose}
-          aria-labelledby="contained-modal-title-vcenter"
-          centered
-        >
-          <Modal.Header closeButton>
-            <Modal.Title>Hello {name}!</Modal.Title>
-          </Modal.Header>
-          <Modal.Body>Woohoo, you're doing great job!</Modal.Body>
-          <Modal.Footer>
-            <Button variant="primary" onClick={handleClose}>
-              React is Great!
-            </Button>
-          </Modal.Footer>
-        </Modal>
-      </section>
+    <Router>
+      <NavBar />
 
-      <section className="nav-bar">
-        <Navbar bg="light" variant="light">
-          <Navbar.Brand href="#home">Navbar</Navbar.Brand>
-          <Nav className="mr-auto">
-            <Nav.Link href="#home">Home</Nav.Link>
-            <Nav.Link href="#features">Features</Nav.Link>
-            <Nav.Link href="#pricing">Pricing</Nav.Link>
-          </Nav>
-          <Button variant="outline-primary">Button</Button>
-        </Navbar>
-      </section>
+      <Fragment>
+        <section className="main d-flex">
+          <div className="container">
+            <div className="row my-2">
+              <div className="col-lg-6 d-flex flex-column justify-content-center pt-4 pt-lg-0 order-2 order-lg-1">
+                <h1 style={styles.mainTitle}>
+                  Открытая площадка студентов ККРИТ
+                </h1>
+                <h4>Твой путь в будущее</h4>
+                <div class="d-lg-flex">
+                  <Link>
+                    <Button size="lg" variant="outline-success">
+                      Зарегистрироваться
+                    </Button>
+                    <Button size="lg" className="ml-1" variant="primary">
+                      Войти
+                    </Button>
+                  </Link>
+                </div>
+              </div>
+              <div
+                class="col-lg-6 order-1 order-lg-2"
+                data-aos="zoom-in"
+                data-aos-delay="200"
+              >
+                <img src={Career} class="img-fluid animated" alt=""></img>
+              </div>
+            </div>
+          </div>
+        </section>
+      </Fragment>
 
-      <section className="container">
-        <Image src={main} fluid />
-        <Form style={styles.title}>
-          <Form.Label>Your Name</Form.Label>
-          <Form.Control
-            type="email"
-            placeholder="John"
-            value={name}
-            onChange={OnChange}
-          />
-          <Form.Text className="text-muted">
-            Enter your Name and hit button
-          </Form.Text>
-          <Button
-            style={styles.button}
-            variant="outline-primary"
-            onClick={handleShow}
-          >
-            SAY
-          </Button>
-        </Form>
-      </section>
-    </Fragment>
+      <Fragment>
+        <div style={styles.projects} className="container">
+          <h1 style={styles.title}>Наши площадки:</h1>
+          <div className="row">
+            <div className="col-lg-6 d-flex align-items-center align-items-stretch">
+              <Card className="my-2">
+                <Card.Img variant="top" src={Card1} />
+                <Card.Body>
+                  <Card.Title>#ККРИТ Хакатон</Card.Title>
+                  <Card.Text>
+                    Конкурс профессионального мастерства с возможностью начала
+                    крупного стартапа. Собери свою команду и получи доступ к
+                    кейсовым заданиям.
+                  </Card.Text>
+                  <Button variant="primary">Подробнее</Button>
+                </Card.Body>
+              </Card>
+            </div>
+
+            <div className="col-lg-6 d-flex align-items-center align-items-stretch">
+              <Card className="my-2">
+                <Card.Img variant="top" src={Card2} />
+                <Card.Body>
+                  <Card.Title>#Работа ККРИТ</Card.Title>
+                  <Card.Text>
+                    Построй карьеру вместе с нами! Множество работодателей уже
+                    здесь. Подай резюме, изучай вакансии и требования
+                    работодателей, учавствуй в мастер классах и встречах.
+                  </Card.Text>
+                  <Button variant="success">Подробнее</Button>
+                </Card.Body>
+              </Card>
+            </div>
+          </div>
+        </div>
+      </Fragment>
+    </Router>
   );
 };
 
 const styles = {
   title: {
     textAlign: "center",
-    margin: "4rem",
-    fontSize: "2rem",
-    width: "auto",
+    marginTop: "2rem",
   },
-  button: {
-    fontSize: "1.5rem",
-    width: "auto",
+  mainTitle: {
+    fontWeight: "600",
+    letterSpacing: "2px",
+    textTransform: "uppercase",
+
+  },
+  projects: {
+    marginBottom: "2rem",
   },
 };
 
