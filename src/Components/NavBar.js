@@ -1,5 +1,5 @@
 import React, { Fragment } from "react";
-import { Link, BrowserRouter as Router } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { Navbar, Nav, Button } from "react-bootstrap";
 import logo from "../img/logo.png";
 
@@ -7,10 +7,12 @@ const NavBar = () => {
   return (
     <Fragment>
       <Navbar
+        style={{ backgroundColor: "transparent" }}
         collapseOnSelect
         expand="lg"
         bg="light"
         variant="light"
+        sticky="top"
       >
         <Navbar.Brand href="#home">
           <img
@@ -26,12 +28,12 @@ const NavBar = () => {
         <Navbar.Collapse id="responsive-navbar-nav">
           <Nav className="ml-auto">
             <Link>
-              <Button variant="outline-success " className="mr-sm-2">
+              <Button variant="success" className="mr-sm-2">
                 Зарегистрироваться
               </Button>
             </Link>
             <Link>
-              <Button variant="primary">Войти</Button>
+              <Button variant="primary" className="mr-sm-2">Войти</Button>
             </Link>
           </Nav>
         </Navbar.Collapse>
